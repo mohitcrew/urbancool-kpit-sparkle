@@ -1,0 +1,102 @@
+const mockDataSources = [
+  {
+    id: 'landsat-9',
+    category: 'Satellite Earth Observation',
+    name: 'NASA / USGS Landsat-9 (TIRS-2 & OLI-2)',
+    description: 'Thermal Infrared Sensor providing Land Surface Temperature (LST) and multi-spectral surface reflectance bands (NDVI, NDBI).',
+    spatialResolution: '30m Multi-spectral / 100m Thermal (Resampled to 30m)',
+    temporalResolution: '8-day revisit interval',
+    status: 'Connected',
+    latency: '3.4 hours post-pass',
+    healthScore: 99.2,
+    lastIngested: 'Today at 09:42 IST',
+    recordsIngestedToday: '1,420 raster tiles',
+    apiProtocol: 'Cloud Optimized GeoTIFF / SpatioTemporal Asset Catalog (STAC)'
+  },
+  {
+    id: 'sentinel-2',
+    category: 'Satellite Earth Observation',
+    name: 'ESA Copernicus Sentinel-2 (MSI)',
+    description: 'High-resolution optical imagery for precise vegetation chlorophyll tracking (NDVI), canopy fractional cover, and urban albedo calculation.',
+    spatialResolution: '10m / 20m Multi-spectral bands',
+    temporalResolution: '5-day constellation revisit',
+    status: 'Connected',
+    latency: '2.1 hours post-pass',
+    healthScore: 99.8,
+    lastIngested: 'Today at 11:15 IST',
+    recordsIngestedToday: '3,840 GeoTIFF tiles',
+    apiProtocol: 'Copernicus Data Space Ecosystem OpenSearch API'
+  },
+  {
+    id: 'imd-weather',
+    category: 'Meteorological & Weather Stations',
+    name: 'India Meteorological Department (IMD) AWS Network',
+    description: 'Automated Weather Stations across Pune (Shivajinagar, Pashan, Lohegaon, Lavale) streaming ambient air temperature, relative humidity, solar irradiance, and wind velocity.',
+    spatialResolution: 'Point Network (12 Urban Stations)',
+    temporalResolution: 'Real-time (15-minute streaming)',
+    status: 'Connected',
+    latency: '45 seconds',
+    healthScore: 98.4,
+    lastIngested: '2 minutes ago',
+    recordsIngestedToday: '2,880 telemetry packets',
+    apiProtocol: 'REST JSON / MQTT Telemetry Broker'
+  },
+  {
+    id: 'open-meteo',
+    category: 'Meteorological & Weather Stations',
+    name: 'ECMWF & GFS High-Resolution Numerical Forecasts',
+    description: '7-day forward hourly prognostic model runs for surface temperature, heat wave advisory warnings, and boundary-layer ventilation.',
+    spatialResolution: '2.5 km downscaled grid',
+    temporalResolution: 'Hourly forecast runs',
+    status: 'Connected',
+    latency: '12 minutes',
+    healthScore: 100.0,
+    lastIngested: '1 hour ago',
+    recordsIngestedToday: '168 forecast intervals',
+    apiProtocol: 'REST API'
+  },
+  {
+    id: 'osm-gis',
+    category: 'Geospatial & Built Environment',
+    name: 'OpenStreetMap (OSM) & Municipal GIS Cadastre',
+    description: 'Vector polygon footprints for building heights, street centerlines, park boundaries, water bodies, and paved road networks.',
+    spatialResolution: 'Sub-meter vector accuracy',
+    temporalResolution: 'Weekly delta synchronization',
+    status: 'Connected',
+    latency: 'Sync completed',
+    healthScore: 97.9,
+    lastIngested: 'Yesterday at 04:00 IST',
+    recordsIngestedToday: '148,200 building polygons',
+    apiProtocol: 'Overpass API / GeoJSON PostGIS'
+  },
+  {
+    id: 'census-demographics',
+    category: 'Socio-Economic & Vulnerability',
+    name: 'Census Demographic & Slum Household Survey',
+    description: 'Ward-level age demographics (seniors >60, infants <5), informal settlement densities, occupational exposure, and access to piped cooling/water.',
+    spatialResolution: 'Electoral Ward & Census Enumeration Block',
+    temporalResolution: 'Annual socio-economic update',
+    status: 'Connected',
+    latency: 'Static baseline indexed',
+    healthScore: 96.5,
+    lastIngested: '3 days ago',
+    recordsIngestedToday: '41 ward socio-demographic records',
+    apiProtocol: 'Relational Database / GeoPackage'
+  },
+  {
+    id: 'iot-misting',
+    category: 'Smart City IoT & Field Sensors',
+    name: 'PMC Smart City IoT Urban Canopy Sensors',
+    description: 'Micro-climate IoT air temperature and globe temperature sensors installed at critical bus terminals and school grounds.',
+    spatialResolution: '45 Micro-climate Nodes',
+    temporalResolution: '1-minute real-time stream',
+    status: 'Processing',
+    latency: '15 seconds',
+    healthScore: 94.2,
+    lastIngested: '30 seconds ago',
+    recordsIngestedToday: '64,800 sensor readings',
+    apiProtocol: 'MQTT / LoRaWAN IoT Gateway'
+  }
+];
+
+module.exports = { mockDataSources };

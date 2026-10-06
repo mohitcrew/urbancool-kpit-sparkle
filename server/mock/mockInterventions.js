@@ -1,0 +1,190 @@
+const mockInterventions = [
+  {
+    id: 'int-trees',
+    name: 'Urban Trees & Miyawaki Pocket Forests',
+    category: 'Nature-Based Solutions (NBS)',
+    icon: 'Trees',
+    tagline: 'Deep shade canopy and evapotranspiration cooling',
+    coolingPotential: '1.2°C to 2.5°C localized',
+    costPerUnit: '₹1,500 – ₹2,800 per mature sapling planted + 3-yr maintenance',
+    costCategory: 'Medium',
+    waterRequirement: '12 – 25 L/day per tree (First 2 years, drops to nil post root establishment)',
+    waterCategory: 'Moderate',
+    landRequirement: '4 – 9 m² per tree canopy / 50 – 500 m² for pocket micro-forests',
+    landCategory: 'Medium',
+    coBenefits: [
+      'Particulate matter (PM2.5/PM10) air filtration',
+      'Urban biodiversity and bird nesting corridors',
+      'Stormwater runoff retention & groundwater recharge',
+      'Noise attenuation along heavy traffic corridors'
+    ],
+    suitableConditions: 'Arterial avenues, municipal school compounds, median strips, public parks, degraded vacant municipal lands.',
+    feasibilityScore: 88,
+    implementationTimeframe: '1 – 3 growing seasons',
+    recommendedWards: ['Ward 17', 'Ward 08', 'Ward 23', 'Ward 31'],
+    carbonOffsetAnnualTonnes: '0.022 per tree',
+    imageType: 'trees'
+  },
+  {
+    id: 'int-cool-roofs',
+    name: 'High-Albedo Cool Roofs & Reflective Membranes',
+    category: 'Passive Materials & Building Envelope',
+    icon: 'SunDim',
+    tagline: 'Solar reflectance index (SRI > 104) coating to repel solar thermal gain',
+    coolingPotential: '0.8°C to 1.8°C indoor air / 2.0°C to 4.5°C roof surface',
+    costPerUnit: '₹220 – ₹380 per m² applied',
+    costCategory: 'Low-Medium',
+    waterRequirement: 'Zero operational water (only periodic dust washdown)',
+    waterCategory: 'Low',
+    landRequirement: 'Zero additional ground footprint (existing rooftop utilization)',
+    landCategory: 'Zero Footprint',
+    coBenefits: [
+      '15% – 28% reduction in building air conditioning energy demand',
+      'Immediate thermal relief for top-floor and informal settlement residents',
+      'Extended roof membrane lifespan due to lowered thermal stress',
+      'Rapid deployment with minimal disruption'
+    ],
+    suitableConditions: 'Flat concrete roofs, industrial corrugated metal sheds, slum tin-sheet roofing clusters, commercial malls.',
+    feasibilityScore: 94,
+    implementationTimeframe: '1 – 2 weeks per 1,000 m²',
+    recommendedWards: ['Ward 17', 'Ward 08', 'Ward 12', 'Ward 23'],
+    carbonOffsetAnnualTonnes: '0.015 per 100 m²',
+    imageType: 'cool-roof'
+  },
+  {
+    id: 'int-green-roofs',
+    name: 'Living Vegetated Green Roofs & Bio-Solar',
+    category: 'Nature-Based Solutions (NBS)',
+    icon: 'Sprout',
+    tagline: 'Engineered soil substrate with sedum and drought-resistant groundcover',
+    coolingPotential: '1.0°C to 2.2°C ambient / 15°C roof surface dampening',
+    costPerUnit: '₹2,400 – ₹4,200 per m² installed',
+    costCategory: 'High',
+    waterRequirement: '4 – 8 L/m²/day (utilizes drip irrigation / greywater recycling)',
+    waterCategory: 'Moderate-High',
+    landRequirement: 'Structural load-bearing rooftops (> 150 kg/m² structural reserve)',
+    landCategory: 'Zero Footprint (Rooftop)',
+    coBenefits: [
+      '70% – 90% peak stormwater attenuation',
+      'Urban pollination and insect biodiversity micro-habitats',
+      'Enhanced thermal & acoustic indoor insulation',
+      'Recreational terrace space for urban occupants'
+    ],
+    suitableConditions: 'Modern reinforced concrete buildings, municipal libraries, IT park campuses, hospital terraces.',
+    feasibilityScore: 72,
+    implementationTimeframe: '3 – 6 weeks installation',
+    recommendedWards: ['Ward 12', 'Ward 17', 'Ward 31'],
+    carbonOffsetAnnualTonnes: '0.045 per 100 m²',
+    imageType: 'green-roof'
+  },
+  {
+    id: 'int-cool-pavements',
+    name: 'Permeable & High-Albedo Cool Pavements',
+    category: 'Surface Material Engineering',
+    icon: 'Grid',
+    tagline: 'Porous interlocking blocks and light-colored reflective asphalt binder',
+    coolingPotential: '0.6°C to 1.4°C surface & near-surface air temp',
+    costPerUnit: '₹850 – ₹1,400 per m²',
+    costCategory: 'Medium',
+    waterRequirement: 'Zero operational requirement',
+    waterCategory: 'Low',
+    landRequirement: 'Replaces existing impervious asphalt/paving surfaces',
+    landCategory: 'Surface Replacement',
+    coBenefits: [
+      'Rapid percolation of monsoon rainwater into water table',
+      'Mitigation of urban flash flooding and puddle hazards',
+      'Improved nighttime pedestrian visibility due to higher reflectance',
+      'Reduced heat irradiation onto adjacent building facades'
+    ],
+    suitableConditions: 'Pedestrian footpaths, open plaza parking lots, university walkways, transit plaza walkways.',
+    feasibilityScore: 82,
+    implementationTimeframe: '2 – 4 weeks per 1,000 m²',
+    recommendedWards: ['Ward 17', 'Ward 31', 'Ward 23'],
+    carbonOffsetAnnualTonnes: '0.012 per 100 m²',
+    imageType: 'cool-pavement'
+  },
+  {
+    id: 'int-green-corridors',
+    name: 'Continuous Urban Green Corridors',
+    category: 'City-Scale Spatial Infrastructure',
+    icon: 'Layers',
+    tagline: 'Connected green ribbons connecting parks, rivers, and pedestrian transit',
+    coolingPotential: '1.5°C to 3.0°C along corridor width + 200m cooling plume',
+    costPerUnit: '₹45 Lakhs – ₹1.2 Cr per linear kilometer',
+    costCategory: 'High',
+    waterRequirement: 'Treated STP municipal effluent (30,000 L/km/day)',
+    waterCategory: 'Moderate (Non-potable)',
+    landRequirement: 'Right-of-way easement (6 – 15m linear width)',
+    landCategory: 'High',
+    coBenefits: [
+      'Seamless non-motorized pedestrian & cycling highway',
+      'Continuous ecological migration corridor for avian and pollinator species',
+      'Significant property value appreciation along corridor',
+      'Reduction in localized urban heat island canyon effect'
+    ],
+    suitableConditions: 'Riverfront trails (Mutha riverbank), metro viaduct medians, disused railway corridors, arterial boulevards.',
+    feasibilityScore: 76,
+    implementationTimeframe: '6 – 12 months',
+    recommendedWards: ['Ward 17', 'Ward 08', 'Ward 12'],
+    carbonOffsetAnnualTonnes: '18.5 per linear km',
+    imageType: 'green-corridor'
+  },
+  {
+    id: 'int-shade-structures',
+    name: 'Tensile Shading & Solar PV Canopies',
+    category: 'Engineered Urban Micro-Infrastructure',
+    icon: 'Umbrella',
+    tagline: 'Lightweight fabric canopies and elevated solar arrays over public walkways',
+    coolingPotential: '1.2°C to 2.8°C localized shade perceived temperature drop (PET -6°C)',
+    costPerUnit: '₹3,500 – ₹6,000 per m² coverage (Tensile) / ₹8,500 per m² (Solar PV)',
+    costCategory: 'Medium-High',
+    waterRequirement: 'Zero operational',
+    waterCategory: 'Low',
+    landRequirement: 'Modular column footings (minimal ground obstruction)',
+    landCategory: 'Low',
+    coBenefits: [
+      'Direct UV protection for daily commuters & school children',
+      'Solar electricity generation for municipal streetlights & EV chargers',
+      'Shelter against torrential monsoon rain in transit nodes',
+      'High architectural aesthetic and civic identity'
+    ],
+    suitableConditions: 'Bus terminals, vegetable market lanes, outdoor hospital waiting corridors, pedestrian bridges.',
+    feasibilityScore: 90,
+    implementationTimeframe: '2 – 4 weeks',
+    recommendedWards: ['Ward 12', 'Ward 23', 'Ward 08', 'Ward 17'],
+    carbonOffsetAnnualTonnes: '0.08 per 10 m² (with Solar PV)',
+    imageType: 'shade'
+  },
+  {
+    id: 'int-water-sensitive',
+    name: 'Water-Sensitive Cooling & Misting Pods',
+    category: 'Evaporative Microclimate Cooling',
+    icon: 'Droplets',
+    tagline: 'High-pressure evaporative misting nodes and daylighted urban water bodies',
+    coolingPotential: '2.0°C to 4.5°C within 15m radius of misting pod',
+    costPerUnit: '₹4.5 Lakhs – ₹9 Lakhs per smart automated misting node station',
+    costCategory: 'Medium',
+    waterRequirement: '150 – 350 L/hr during peak heat operational hours (using filtered treated water)',
+    waterCategory: 'High (Recycled Water Priority)',
+    landRequirement: '10 – 25 m² per node installation',
+    landCategory: 'Low',
+    coBenefits: [
+      'Rapid thermal relief during acute heatwave alerts',
+      'Integrated cold drinking water dispensers for outdoor gig-workers',
+      'Ambient dust suppression & air quality improvement',
+      'Smart sensor-controlled activation based on real-time Heat Index (>40°C)'
+    ],
+    suitableConditions: 'Major transit hubs, crowded market squares, construction worker rest shelters, tourist monuments.',
+    feasibilityScore: 85,
+    implementationTimeframe: '2 – 3 weeks per installation',
+    recommendedWards: ['Ward 08', 'Ward 17', 'Ward 19'],
+    carbonOffsetAnnualTonnes: '0.005 per station',
+    imageType: 'water-cooling'
+  }
+];
+
+const getInterventionById = (id) => {
+  return mockInterventions.find((i) => i.id === id) || mockInterventions[0];
+};
+
+module.exports = { mockInterventions, getInterventionById };
