@@ -36,7 +36,7 @@ export default function HotspotCard({ hotspot }) {
           <RiskBadge level={hotspot.riskLevel} score={hotspot.heatRisk} />
         </div>
 
-        <h4 style={{ fontSize: '1.05rem', color: '#ffffff', marginBottom: 4, lineHeight: 1.25 }}>
+        <h4 style={{ fontSize: '1.05rem', color: 'var(--text-primary)', marginBottom: 4, lineHeight: 1.25 }}>
           {hotspot.name}
         </h4>
         <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
@@ -52,7 +52,7 @@ export default function HotspotCard({ hotspot }) {
           gap: 8,
           padding: 10,
           borderRadius: 'var(--radius-sm)',
-          background: 'rgba(0, 0, 0, 0.25)'
+          background: 'var(--card-inner-bg)'
         }}
       >
         <div>
@@ -63,13 +63,13 @@ export default function HotspotCard({ hotspot }) {
         </div>
         <div>
           <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Exposed Pop.</div>
-          <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#ffffff', fontFamily: 'var(--font-display)' }}>
+          <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>
             {hotspot.population?.toLocaleString()}
           </div>
         </div>
         <div>
           <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Canopy NDVI</div>
-          <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#34d399' }}>
+          <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#10b981' }}>
             {hotspot.vegetationPercent}% ({hotspot.ndvi})
           </div>
         </div>

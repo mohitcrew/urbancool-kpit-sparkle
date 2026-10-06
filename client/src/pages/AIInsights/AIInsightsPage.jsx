@@ -88,7 +88,7 @@ export default function AIInsightsPage() {
     const lines = text.split('\n');
     return lines.map((line, idx) => {
       if (line.startsWith('### ')) {
-        return <h4 key={idx} style={{ color: '#ffffff', margin: '10px 0 4px', fontSize: '0.98rem' }}>{line.replace('### ', '')}</h4>;
+        return <h4 key={idx} style={{ color: 'var(--text-primary)', margin: '10px 0 4px', fontSize: '0.98rem' }}>{line.replace('### ', '')}</h4>;
       }
       if (line.startsWith('- ') || line.startsWith('* ')) {
         return (
@@ -122,7 +122,7 @@ export default function AIInsightsPage() {
               Conversational Thermal Intelligence
             </span>
           </div>
-          <h1 style={{ fontSize: '1.65rem', color: '#ffffff' }}>
+          <h1 style={{ fontSize: '1.65rem', color: 'var(--text-primary)' }}>
             UrbanCool AI Assistant & Explainer
           </h1>
         </div>
@@ -201,7 +201,7 @@ export default function AIInsightsPage() {
                   background:
                     m.sender === 'user'
                       ? 'linear-gradient(135deg, rgba(6, 182, 212, 0.3) 0%, rgba(59, 130, 246, 0.25) 100%)'
-                      : 'rgba(15, 23, 42, 0.85)',
+                      : 'var(--card-inner-bg)',
                   border:
                     m.sender === 'user'
                       ? '1px solid var(--border-active)'
@@ -267,7 +267,7 @@ export default function AIInsightsPage() {
                 style={{
                   padding: '10px 16px',
                   borderRadius: 'var(--radius-lg)',
-                  background: 'rgba(15, 23, 42, 0.85)',
+                  background: 'var(--card-inner-bg)',
                   border: '1px solid var(--border-subtle)',
                   display: 'flex',
                   alignItems: 'center',
@@ -290,7 +290,7 @@ export default function AIInsightsPage() {
           style={{
             padding: '10px 20px',
             borderTop: '1px solid var(--border-subtle)',
-            background: 'rgba(0, 0, 0, 0.2)',
+            background: 'var(--card-inner-bg)',
             display: 'flex',
             alignItems: 'center',
             gap: 8,
@@ -307,7 +307,7 @@ export default function AIInsightsPage() {
               style={{
                 padding: '4px 10px',
                 borderRadius: 'var(--radius-full)',
-                background: 'rgba(255, 255, 255, 0.04)',
+                background: 'var(--bg-secondary)',
                 border: '1px solid var(--border-default)',
                 color: 'var(--text-secondary)',
                 fontSize: '0.75rem',
@@ -317,7 +317,7 @@ export default function AIInsightsPage() {
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = 'var(--cyan-400)';
-                e.currentTarget.style.color = '#fff';
+                e.currentTarget.style.color = 'var(--cyan-400)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.borderColor = 'var(--border-default)';
@@ -340,7 +340,7 @@ export default function AIInsightsPage() {
             borderTop: '1px solid var(--border-subtle)',
             display: 'flex',
             gap: 10,
-            background: 'rgba(10, 15, 29, 0.95)'
+            background: 'var(--bg-glass-card)'
           }}
         >
           <input
@@ -355,7 +355,7 @@ export default function AIInsightsPage() {
               borderRadius: 'var(--radius-md)',
               border: '1px solid var(--border-default)',
               backgroundColor: 'var(--bg-secondary)',
-              color: '#ffffff'
+              color: 'var(--text-primary)'
             }}
           />
           <Button

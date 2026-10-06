@@ -62,7 +62,7 @@ export default function InterventionsPage() {
               Urban Heat Mitigation Strategy Library
             </span>
           </div>
-          <h1 style={{ fontSize: '1.85rem', color: '#ffffff' }}>
+          <h1 style={{ fontSize: '1.85rem', color: 'var(--text-primary)' }}>
             Cooling Interventions Catalog
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem' }}>
@@ -122,8 +122,8 @@ export default function InterventionsPage() {
                   borderRadius: 'var(--radius-sm)',
                   fontSize: '0.78rem',
                   fontWeight: categoryFilter === cat.id ? 700 : 500,
-                  backgroundColor: categoryFilter === cat.id ? 'rgba(6, 182, 212, 0.2)' : 'rgba(255, 255, 255, 0.04)',
-                  color: categoryFilter === cat.id ? '#ffffff' : 'var(--text-secondary)',
+                  backgroundColor: categoryFilter === cat.id ? 'rgba(6, 182, 212, 0.2)' : 'var(--bg-secondary)',
+                  color: categoryFilter === cat.id ? 'var(--cyan-400)' : 'var(--text-secondary)',
                   border: categoryFilter === cat.id ? '1px solid var(--cyan-400)' : '1px solid var(--border-subtle)',
                   cursor: 'pointer'
                 }}

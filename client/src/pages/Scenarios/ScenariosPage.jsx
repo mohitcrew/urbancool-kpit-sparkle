@@ -27,8 +27,10 @@ import Button from '../../components/ui/Button';
 import { scenarioService } from '../../services/scenarioService';
 import { mockScenarioPresets } from '../../data/mockScenarios';
 import ErrorState from '../../components/ui/ErrorState';
+import { useApp } from '../../context/AppContext';
 
 export default function ScenariosPage() {
+  const { isDarkMode } = useApp();
   const navigate = useNavigate();
 
   // Custom User Scenario Sliders
@@ -48,43 +50,72 @@ export default function ScenariosPage() {
     async function runSim() {
       const res = await scenarioService.simulateScenario({
         treeCount: customTrees,
-        coolRoofsM2: customCoolRoofs,
-        greenRoofsM2: customGreenRoofs,
-        coolPavementM2: customPavements,
+        coolRoofM2: customCoolRoofs,
+        greenRoofM2: customGreenRoofs,
+        permeablePavementM2: customPavements,
         greenCorridorKm: customCorridorKm,
         budgetCr: customBudgetCr
       });
-      setCustomResult(res.results);
+      setCustomResult(res);
     }
     runSim();
   }, [customTrees, customCoolRoofs, customGreenRoofs, customPavements, customCorridorKm, customBudgetCr]);
 
-  const scenarioA = presets[0]?.results || {};
-  const scenarioB = presets[1]?.results || {};
-  const aiPlan = presets[2]?.results || {};
+  const scenarioA = presets.scenarioA || {
+    name: 'Scenario A (Urban Forestry Heavy)',
+    costCr: 4.8,
+    estimatedCoolingC: 1.0,
+    populationBenefited: 19200,
+    waterReqMlPerDay: 1.2,
+    equityScore: 71
+  };
 
-  // Chart Comparison Data
+  const scenarioB = presets.scenarioB || {
+    name: 'Scenario B (Cool Roofs Acceleration)',
+    costCr: 4.2,
+    estimatedCoolingC: 0.8,
+    populationBenefited: 25400,
+    waterReqMlPerDay: 0.4,
+    equityScore: 84
+  };
+
+  const aiPlan = presets.aiOptimalPlan || {
+    name: 'UrbanCool AI Hybrid Strategy',
+    costCr: 4.95,
+    estimatedCoolingC: 1.4,
+    populationBenefited: 31200,
+    waterReqMlPerDay: 0.85,
+    equityScore: 92
+  };
+
   const chartData = [
     {
-      metric: 'Cooling (°C)',
-      'Scenario A (Trees)': scenarioA.estimatedCoolingC || 1.0,
-      'Scenario B (Cool Roofs)': scenarioB.estimatedCoolingC || 0.8,
-      'Custom Sandbox': customResult?.estimatedCoolingC || 1.1,
-      'AI Optimal Plan': aiPlan.estimatedCoolingC || 1.4
+      metric: 'Cooling (°C x10)',
+      'Scenario A (Trees)': scenarioA.estimatedCoolingC * 10,
+      'Scenario B (Cool Roofs)': scenarioB.estimatedCoolingC * 10,
+      'Custom Sandbox': (customResult?.estimatedCoolingC || 0) * 10,
+      'AI Optimal Plan': aiPlan.estimatedCoolingC * 10
     },
     {
-      metric: 'Pop. Benefited (x10k)',
-      'Scenario A (Trees)': Number(((scenarioA.populationBenefited || 19200) / 10000).toFixed(1)),
-      'Scenario B (Cool Roofs)': Number(((scenarioB.populationBenefited || 25400) / 10000).toFixed(1)),
-      'Custom Sandbox': Number(((customResult?.populationBenefited || 22000) / 10000).toFixed(1)),
-      'AI Optimal Plan': Number(((aiPlan.populationBenefited || 31200) / 10000).toFixed(1))
+      metric: 'Pop. Benefited (k)',
+      'Scenario A (Trees)': Math.round(scenarioA.populationBenefited / 1000),
+      'Scenario B (Cool Roofs)': Math.round(scenarioB.populationBenefited / 1000),
+      'Custom Sandbox': Math.round((customResult?.populationBenefited || 0) / 1000),
+      'AI Optimal Plan': Math.round(aiPlan.populationBenefited / 1000)
     },
     {
-      metric: 'Cost (₹ Cr)',
-      'Scenario A (Trees)': scenarioA.costCr || 5.0,
-      'Scenario B (Cool Roofs)': scenarioB.costCr || 5.0,
-      'Custom Sandbox': customResult?.costCr || 4.9,
-      'AI Optimal Plan': aiPlan.costCr || 4.78
+      metric: 'Equity Score / 10',
+      'Scenario A (Trees)': Math.round(scenarioA.equityScore / 10),
+      'Scenario B (Cool Roofs)': Math.round(scenarioB.equityScore / 10),
+      'Custom Sandbox': Math.round((customResult?.equityScore || 0) / 10),
+      'AI Optimal Plan': Math.round(aiPlan.equityScore / 10)
+    },
+    {
+      metric: 'Budget (₹ Cr)',
+      'Scenario A (Trees)': scenarioA.costCr,
+      'Scenario B (Cool Roofs)': scenarioB.costCr,
+      'Custom Sandbox': customResult?.costCr || 0,
+      'AI Optimal Plan': aiPlan.costCr
     },
     {
       metric: 'Water Req. (ML/d)',
@@ -94,6 +125,17 @@ export default function ScenariosPage() {
       'AI Optimal Plan': aiPlan.waterReqMlPerDay || 1.6
     }
   ];
+
+  const gridStroke = isDarkMode ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.08)';
+  const axisColor = isDarkMode ? '#94a3b8' : '#64748b';
+  const tooltipStyle = {
+    backgroundColor: isDarkMode ? '#0f172a' : '#ffffff',
+    color: isDarkMode ? '#f8fafc' : '#0f172a',
+    borderColor: isDarkMode ? 'rgba(6, 182, 212, 0.3)' : 'rgba(6, 182, 212, 0.6)',
+    borderRadius: 8,
+    fontSize: '0.78rem',
+    boxShadow: 'var(--shadow-md)'
+  };
 
   return (
     <div className="fade-in" style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -106,7 +148,7 @@ export default function ScenariosPage() {
               What-If Climatology Simulation Lab
             </span>
           </div>
-          <h1 style={{ fontSize: '1.85rem', color: '#ffffff' }}>
+          <h1 style={{ fontSize: '1.85rem', color: 'var(--text-primary)' }}>
             Cooling Strategy Scenario Lab
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem' }}>
@@ -138,7 +180,7 @@ export default function ScenariosPage() {
         {/* Left: Custom Scenario Interactive Sandbox */}
         <div className="card-glass" style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-subtle)', paddingBottom: 12 }}>
-            <h3 style={{ fontSize: '1.1rem', color: '#ffffff' }}>Custom Scenario Sandbox</h3>
+            <h3 style={{ fontSize: '1.1rem', color: 'var(--text-primary)' }}>Custom Scenario Sandbox</h3>
             <span style={{ fontSize: '0.72rem', color: 'var(--cyan-400)', fontWeight: 600 }}>
               Live Real-Time Feedback
             </span>
@@ -163,7 +205,7 @@ export default function ScenariosPage() {
             step={1000}
             unit="m²"
             onChange={setCustomCoolRoofs}
-            sublabel="Immediate solar reflectance on building roofs"
+            sublabel="Solar reflectance retrofits on industrial & tin roofs"
           />
 
           <SliderInput
@@ -226,19 +268,19 @@ export default function ScenariosPage() {
             >
               <div>
                 <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Estimated Cooling</div>
-                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#34d399', fontFamily: 'var(--font-display)' }}>
+                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#10b981', fontFamily: 'var(--font-display)' }}>
                   -{customResult.estimatedCoolingC}°C
                 </div>
               </div>
               <div>
                 <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>People Benefited</div>
-                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#38bdf8', fontFamily: 'var(--font-display)' }}>
+                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0891b2', fontFamily: 'var(--font-display)' }}>
                   {customResult.populationBenefited?.toLocaleString()}
                 </div>
               </div>
               <div>
                 <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Calculated Cost</div>
-                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#fbbf24', fontFamily: 'var(--font-display)' }}>
+                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#d97706', fontFamily: 'var(--font-display)' }}>
                   ₹{customResult.costCr} Cr
                 </div>
               </div>
@@ -250,7 +292,7 @@ export default function ScenariosPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
           {/* Comparison Table */}
           <div className="card-glass" style={{ padding: 20 }}>
-            <h3 style={{ fontSize: '1.1rem', color: '#ffffff', marginBottom: 12 }}>
+            <h3 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginBottom: 12 }}>
               Multi-Strategy Head-to-Head Comparison
             </h3>
 
@@ -270,22 +312,22 @@ export default function ScenariosPage() {
                     <td style={{ fontWeight: 600 }}>Estimated Cost</td>
                     <td>₹{scenarioA.costCr} Cr</td>
                     <td>₹{scenarioB.costCr} Cr</td>
-                    <td style={{ fontWeight: 700, color: '#fbbf24' }}>₹{customResult?.costCr} Cr</td>
+                    <td style={{ fontWeight: 700, color: '#d97706' }}>₹{customResult?.costCr} Cr</td>
                     <td style={{ fontWeight: 800, color: 'var(--cyan-400)' }}>₹{aiPlan.costCr} Cr</td>
                   </tr>
                   <tr>
                     <td style={{ fontWeight: 600 }}>Net Temperature Drop</td>
                     <td>-1.0°C</td>
                     <td>-0.8°C</td>
-                    <td style={{ fontWeight: 700, color: '#34d399' }}>-{customResult?.estimatedCoolingC}°C</td>
-                    <td style={{ fontWeight: 800, color: '#34d399' }}>-{aiPlan.estimatedCoolingC} °C</td>
+                    <td style={{ fontWeight: 700, color: '#10b981' }}>-{customResult?.estimatedCoolingC}°C</td>
+                    <td style={{ fontWeight: 800, color: '#10b981' }}>-{aiPlan.estimatedCoolingC} °C</td>
                   </tr>
                   <tr>
                     <td style={{ fontWeight: 600 }}>Population Benefited</td>
                     <td>19,200</td>
                     <td>25,400</td>
-                    <td style={{ fontWeight: 700, color: '#38bdf8' }}>{customResult?.populationBenefited?.toLocaleString()}</td>
-                    <td style={{ fontWeight: 800, color: '#38bdf8' }}>{aiPlan.populationBenefited?.toLocaleString()}</td>
+                    <td style={{ fontWeight: 700, color: '#0891b2' }}>{customResult?.populationBenefited?.toLocaleString()}</td>
+                    <td style={{ fontWeight: 800, color: '#0891b2' }}>{aiPlan.populationBenefited?.toLocaleString()}</td>
                   </tr>
                   <tr>
                     <td style={{ fontWeight: 600 }}>Water Requirement</td>
@@ -313,7 +355,7 @@ export default function ScenariosPage() {
                 background: 'rgba(16, 185, 129, 0.08)',
                 border: '1px solid rgba(16, 185, 129, 0.25)',
                 fontSize: '0.78rem',
-                color: '#34d399',
+                color: '#10b981',
                 display: 'flex',
                 alignItems: 'center',
                 gap: 8
@@ -328,25 +370,18 @@ export default function ScenariosPage() {
 
           {/* Comparison Bar Chart */}
           <div className="card-glass" style={{ padding: 20 }}>
-            <h3 style={{ fontSize: '1.05rem', color: '#ffffff', marginBottom: 12 }}>
+            <h3 style={{ fontSize: '1.05rem', color: 'var(--text-primary)', marginBottom: 12 }}>
               Scenario Performance Profiles
             </h3>
 
             <div style={{ height: 260, width: '100%' }}>
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.06)" />
-                  <XAxis dataKey="metric" stroke="#94a3b8" fontSize={11} />
-                  <YAxis stroke="#94a3b8" fontSize={11} />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: '#0f172a',
-                      borderColor: 'rgba(6, 182, 212, 0.3)',
-                      borderRadius: 8,
-                      fontSize: '0.78rem'
-                    }}
-                  />
-                  <Legend wrapperStyle={{ fontSize: '0.74rem' }} />
+                  <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
+                  <XAxis dataKey="metric" stroke={axisColor} fontSize={11} />
+                  <YAxis stroke={axisColor} fontSize={11} />
+                  <Tooltip contentStyle={tooltipStyle} />
+                  <Legend wrapperStyle={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }} />
                   <Bar dataKey="Scenario A (Trees)" fill="#10b981" radius={[4, 4, 0, 0]} />
                   <Bar dataKey="Scenario B (Cool Roofs)" fill="#38bdf8" radius={[4, 4, 0, 0]} />
                   <Bar dataKey="Custom Sandbox" fill="#f59e0b" radius={[4, 4, 0, 0]} />

@@ -37,7 +37,7 @@ export default function ErrorState({
       </div>
 
       <div>
-        <h3 style={{ fontSize: '1.15rem', marginBottom: 6, color: '#ffffff' }}>{title}</h3>
+        <h3 style={{ fontSize: '1.15rem', marginBottom: 6, color: 'var(--text-primary)' }}>{title}</h3>
         <p style={{ color: 'var(--text-secondary)', maxWidth: 460, fontSize: '0.88rem' }}>{message}</p>
       </div>
 

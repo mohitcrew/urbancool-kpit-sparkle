@@ -22,7 +22,7 @@ export default function AIInsightCard({
         flexDirection: 'column',
         justifyContent: 'space-between',
         border: '1px solid var(--border-active)',
-        background: 'linear-gradient(145deg, rgba(21, 31, 56, 0.8) 0%, rgba(10, 15, 29, 0.95) 100%)',
+        background: 'var(--ai-card-bg)',
         boxShadow: 'var(--shadow-glow)'
       }}
     >
@@ -61,7 +61,7 @@ export default function AIInsightCard({
               padding: '2px 8px',
               borderRadius: 'var(--radius-full)',
               background: 'rgba(239, 68, 68, 0.15)',
-              color: '#f87171',
+              color: '#ef4444',
               border: '1px solid rgba(239, 68, 68, 0.3)',
               fontWeight: 600
             }}
@@ -70,7 +70,7 @@ export default function AIInsightCard({
           </span>
         </div>
 
-        <h3 style={{ fontSize: '1.25rem', color: '#ffffff', marginBottom: 8, lineHeight: 1.3 }}>
+        <h3 style={{ fontSize: '1.25rem', color: 'var(--text-primary)', marginBottom: 8, lineHeight: 1.3 }}>
           {totalCriticalCount} municipal zones require immediate cooling intervention.
         </h3>
         <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginBottom: 16, lineHeight: 1.4 }}>
@@ -88,7 +88,7 @@ export default function AIInsightCard({
                 alignItems: 'center',
                 padding: '8px 12px',
                 borderRadius: 'var(--radius-sm)',
-                background: 'rgba(0, 0, 0, 0.25)',
+                background: 'var(--card-inner-bg)',
                 border: '1px solid var(--border-subtle)'
               }}
             >

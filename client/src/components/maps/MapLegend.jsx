@@ -87,7 +87,7 @@ export default function MapLegend({ activeLayer = 'heatRisk' }) {
         bottom: 24,
         right: 24,
         zIndex: 1000,
-        backgroundColor: 'rgba(10, 15, 29, 0.88)',
+        background: 'var(--bg-glass-card)',
         backdropFilter: 'blur(12px)',
         border: '1px solid var(--border-default)',
         borderRadius: 'var(--radius-md)',

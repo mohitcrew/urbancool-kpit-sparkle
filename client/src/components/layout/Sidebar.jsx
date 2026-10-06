@@ -93,7 +93,7 @@ export default function Sidebar() {
         style={{
           padding: '14px 16px',
           borderTop: '1px solid var(--border-subtle)',
-          backgroundColor: 'rgba(0, 0, 0, 0.25)',
+          backgroundColor: 'var(--sidebar-footer-bg)',
           display: 'flex',
           flexDirection: 'column',
           gap: 4

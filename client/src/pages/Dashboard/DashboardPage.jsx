@@ -86,7 +86,7 @@ export default function DashboardPage() {
               {currentCity?.name} Municipal Jurisdiction
             </span>
           </div>
-          <h1 style={{ fontSize: '1.85rem', color: '#ffffff', letterSpacing: '-0.02em' }}>
+          <h1 style={{ fontSize: '1.85rem', color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
             City Heat Mitigation Command Center
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem' }}>
@@ -181,7 +181,7 @@ export default function DashboardPage() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <MapIcon size={16} color="var(--cyan-400)" />
-              <h2 style={{ fontSize: '1.1rem', color: '#ffffff' }}>Live Urban Thermal Map</h2>
+              <h2 style={{ fontSize: '1.1rem', color: 'var(--text-primary)' }}>Live Urban Thermal Map</h2>
             </div>
             <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
               Click any polygon for ward diagnostics
@@ -213,7 +213,7 @@ export default function DashboardPage() {
       <div className="card-glass" style={{ padding: 24 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
           <div>
-            <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: 2 }}>
+            <h3 style={{ fontSize: '1.15rem', color: 'var(--text-primary)', marginBottom: 2 }}>
               Priority Heat Hotspots Requiring Action
             </h3>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
@@ -257,7 +257,7 @@ export default function DashboardPage() {
                     {h.id}
                   </td>
                   <td>
-                    <div style={{ fontWeight: 600, color: '#ffffff' }}>{h.shortName}</div>
+                    <div style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{h.shortName}</div>
                     <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{h.name}</div>
                   </td>
                   <td>

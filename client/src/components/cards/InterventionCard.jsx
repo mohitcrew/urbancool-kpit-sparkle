@@ -66,7 +66,7 @@ export default function InterventionCard({ intervention, onSelectForPlanning }) 
         <div style={{ fontSize: '0.72rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 700, letterSpacing: '0.04em' }}>
           {intervention.category}
         </div>
-        <h3 style={{ fontSize: '1.15rem', color: '#ffffff', margin: '4px 0 6px', lineHeight: 1.25 }}>
+        <h3 style={{ fontSize: '1.15rem', color: 'var(--text-primary)', margin: '4px 0 6px', lineHeight: 1.25 }}>
           {intervention.name}
         </h3>
         <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.4, marginBottom: 12 }}>
@@ -79,7 +79,7 @@ export default function InterventionCard({ intervention, onSelectForPlanning }) 
             display: 'flex',
             flexDirection: 'column',
             gap: 6,
-            background: 'rgba(0, 0, 0, 0.25)',
+            background: 'var(--card-inner-bg)',
             padding: 10,
             borderRadius: 'var(--radius-sm)',
             border: '1px solid var(--border-subtle)',
@@ -88,7 +88,7 @@ export default function InterventionCard({ intervention, onSelectForPlanning }) 
         >
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <span style={{ color: 'var(--text-muted)' }}>Estimated Cost:</span>
-            <span style={{ color: '#ffffff', fontWeight: 600 }}>{intervention.costPerUnit}</span>
+            <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{intervention.costPerUnit}</span>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <span style={{ color: 'var(--text-muted)' }}>Water Demand:</span>
@@ -100,7 +100,7 @@ export default function InterventionCard({ intervention, onSelectForPlanning }) 
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <span style={{ color: 'var(--text-muted)' }}>Feasibility Score:</span>
-            <span style={{ color: '#34d399', fontWeight: 700 }}>{intervention.feasibilityScore}/100</span>
+            <span style={{ color: '#10b981', fontWeight: 700 }}>{intervention.feasibilityScore}/100</span>
           </div>
         </div>
 

@@ -107,7 +107,7 @@ export default function PlannerPage() {
               Multi-Objective AI Decision Engine
             </span>
           </div>
-          <h1 style={{ fontSize: '1.85rem', color: '#ffffff' }}>
+          <h1 style={{ fontSize: '1.85rem', color: 'var(--text-primary)' }}>
             AI Cooling Strategy Planner
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem' }}>
@@ -142,7 +142,7 @@ export default function PlannerPage() {
         <div className="card-glass" style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 18 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid var(--border-subtle)', paddingBottom: 12 }}>
             <Sliders size={18} color="var(--cyan-400)" />
-            <h3 style={{ fontSize: '1.1rem', color: '#ffffff' }}>Optimization Constraints</h3>
+            <h3 style={{ fontSize: '1.1rem', color: 'var(--text-primary)' }}>Optimization Constraints</h3>
           </div>
 
           {/* Ward Target */}
@@ -206,8 +206,8 @@ export default function PlannerPage() {
                       borderRadius: 'var(--radius-sm)',
                       fontSize: '0.75rem',
                       fontWeight: active ? 700 : 500,
-                      backgroundColor: active ? 'rgba(6, 182, 212, 0.2)' : 'rgba(255, 255, 255, 0.03)',
-                      color: active ? '#ffffff' : 'var(--text-secondary)',
+                      backgroundColor: active ? 'rgba(6, 182, 212, 0.2)' : 'var(--badge-bg)',
+                      color: active ? 'var(--cyan-400)' : 'var(--text-secondary)',
                       border: active ? '1px solid var(--cyan-400)' : '1px solid var(--border-subtle)',
                       textAlign: 'center',
                       cursor: 'pointer',
@@ -312,7 +312,7 @@ export default function PlannerPage() {
                       ESTIMATED SIMULATION
                     </span>
                   </div>
-                  <h2 style={{ fontSize: '1.4rem', color: '#ffffff' }}>
+                  <h2 style={{ fontSize: '1.4rem', color: 'var(--text-primary)' }}>
                     Recommended Strategy for {currentSelectedWardData?.shortName || selectedWard}
                   </h2>
                 </div>
@@ -332,31 +332,31 @@ export default function PlannerPage() {
                 }}
                 className="impact-metrics-strip"
               >
-                <div style={{ padding: 12, background: 'rgba(0, 0, 0, 0.3)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
+                <div style={{ padding: 12, background: 'var(--card-inner-bg)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
                   <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
                     Estimated Cooling
                   </div>
-                  <div style={{ fontSize: '1.45rem', fontWeight: 800, color: '#34d399', fontFamily: 'var(--font-display)' }}>
+                  <div style={{ fontSize: '1.45rem', fontWeight: 800, color: '#10b981', fontFamily: 'var(--font-display)' }}>
                     -{planResult.data.impact.estimatedCoolingC}°C
                   </div>
                   <div style={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>Ambient air relief</div>
                 </div>
 
-                <div style={{ padding: 12, background: 'rgba(0, 0, 0, 0.3)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
+                <div style={{ padding: 12, background: 'var(--card-inner-bg)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
                   <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
                     Population Benefited
                   </div>
-                  <div style={{ fontSize: '1.45rem', fontWeight: 800, color: '#38bdf8', fontFamily: 'var(--font-display)' }}>
+                  <div style={{ fontSize: '1.45rem', fontWeight: 800, color: '#0891b2', fontFamily: 'var(--font-display)' }}>
                     {planResult.data.impact.populationBenefited?.toLocaleString()}
                   </div>
                   <div style={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>Exposed citizens</div>
                 </div>
 
-                <div style={{ padding: 12, background: 'rgba(0, 0, 0, 0.3)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
+                <div style={{ padding: 12, background: 'var(--card-inner-bg)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
                   <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
                     Estimated Cost
                   </div>
-                  <div style={{ fontSize: '1.45rem', fontWeight: 800, color: '#fbbf24', fontFamily: 'var(--font-display)' }}>
+                  <div style={{ fontSize: '1.45rem', fontWeight: 800, color: '#d97706', fontFamily: 'var(--font-display)' }}>
                     ₹{planResult.data.impact.costCr} Cr
                   </div>
                   <div style={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>
@@ -364,7 +364,7 @@ export default function PlannerPage() {
                   </div>
                 </div>
 
-                <div style={{ padding: 12, background: 'rgba(0, 0, 0, 0.3)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
+                <div style={{ padding: 12, background: 'var(--card-inner-bg)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
                   <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
                     Water Requirement
                   </div>
@@ -388,7 +388,7 @@ export default function PlannerPage() {
                       style={{
                         padding: '10px 14px',
                         borderRadius: 'var(--radius-sm)',
-                        background: 'rgba(255, 255, 255, 0.025)',
+                        background: 'var(--card-inner-bg)',
                         border: '1px solid var(--border-subtle)',
                         display: 'flex',
                         justifyContent: 'space-between',
@@ -396,7 +396,7 @@ export default function PlannerPage() {
                       }}
                     >
                       <div>
-                        <div style={{ fontSize: '0.84rem', fontWeight: 600, color: '#ffffff' }}>
+                        <div style={{ fontSize: '0.84rem', fontWeight: 600, color: 'var(--text-primary)' }}>
                           {item.name}
                         </div>
                         <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
@@ -459,7 +459,7 @@ export default function PlannerPage() {
           ) : (
             <div className="card-glass" style={{ padding: 40, textAlign: 'center' }}>
               <Sparkles size={32} color="var(--cyan-400)" style={{ margin: '0 auto 12px' }} />
-              <h3 style={{ color: '#ffffff', marginBottom: 6 }}>Ready to Optimize</h3>
+              <h3 style={{ color: 'var(--text-primary)', marginBottom: 6 }}>Ready to Optimize</h3>
               <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>
                 Set your budget and priorities on the left, then click Optimize Cooling Plan.
               </p>

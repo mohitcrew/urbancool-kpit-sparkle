@@ -64,7 +64,7 @@ export default function DataSourcesPage() {
               Multi-Modal Ingestion Architecture
             </span>
           </div>
-          <h1 style={{ fontSize: '1.85rem', color: '#ffffff' }}>
+          <h1 style={{ fontSize: '1.85rem', color: 'var(--text-primary)' }}>
             Data Feeds & Geospatial Ingestion Pipeline
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem' }}>
@@ -87,7 +87,7 @@ export default function DataSourcesPage() {
         className="card-glass"
         style={{
           padding: 20,
-          background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%)',
+          background: 'var(--ai-card-bg)',
           border: '1px solid var(--border-active)',
           display: 'flex',
           flexWrap: 'wrap',
@@ -112,7 +112,7 @@ export default function DataSourcesPage() {
             <Activity size={22} />
           </div>
           <div>
-            <div style={{ fontSize: '0.95rem', fontWeight: 700, color: '#ffffff' }}>
+            <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)' }}>
               Perception Layer Status: 7 of 7 Feeds Active
             </div>
             <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
@@ -122,7 +122,7 @@ export default function DataSourcesPage() {
         </div>
 
         <div style={{ display: 'flex', gap: 14, fontSize: '0.78rem' }}>
-          <div>Daily Ingested: <strong style={{ color: '#ffffff' }}>74,100+ telemetry records</strong></div>
+          <div>Daily Ingested: <strong style={{ color: 'var(--text-primary)' }}>74,100+ telemetry records</strong></div>
           <span style={{ color: 'var(--text-muted)' }}>|</span>
           <div>Mean Latency: <strong style={{ color: '#34d399' }}>1.2s</strong></div>
         </div>
@@ -196,7 +196,7 @@ export default function DataSourcesPage() {
                   <div style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 700 }}>
                     {src.category}
                   </div>
-                  <h3 style={{ fontSize: '1.15rem', color: '#ffffff', margin: '4px 0 6px' }}>
+                  <h3 style={{ fontSize: '1.15rem', color: 'var(--text-primary)', margin: '4px 0 6px' }}>
                     {src.name}
                   </h3>
                   <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.4, marginBottom: 14 }}>
@@ -209,7 +209,7 @@ export default function DataSourcesPage() {
                       display: 'flex',
                       flexDirection: 'column',
                       gap: 6,
-                      background: 'rgba(0, 0, 0, 0.25)',
+                      background: 'var(--card-inner-bg)',
                       padding: 10,
                       borderRadius: 'var(--radius-sm)',
                       fontSize: '0.76rem'
@@ -217,7 +217,7 @@ export default function DataSourcesPage() {
                   >
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                       <span style={{ color: 'var(--text-muted)' }}>Spatial Grid:</span>
-                      <span style={{ color: '#ffffff', fontWeight: 600 }}>{src.spatialResolution}</span>
+                      <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{src.spatialResolution}</span>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                       <span style={{ color: 'var(--text-muted)' }}>Temporal Cadence:</span>

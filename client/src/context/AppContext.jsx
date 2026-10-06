@@ -5,6 +5,9 @@ import { apiClient } from '../services/apiClient';
 const AppContext = createContext(null);
 
 export function AppProvider({ children }) {
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem('urbancool_theme') || 'dark'
+  );
   const [selectedCityId, setSelectedCityId] = useState(
     () => localStorage.getItem('urbancool_city') || 'pune'
   );
@@ -38,6 +41,13 @@ export function AppProvider({ children }) {
     }
   ]);
 
+  // Sync theme with document root & localStorage
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    document.body.className = theme === 'light' ? 'theme-light' : 'theme-dark';
+    localStorage.setItem('urbancool_theme', theme);
+  }, [theme]);
+
   // Sync API Client mock mode state
   useEffect(() => {
     apiClient.setMockMode(isDemoMode);
@@ -69,6 +79,10 @@ export function AppProvider({ children }) {
     };
   }, [selectedCityId]);
 
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
   const toggleSidebar = () => setIsSidebarCollapsed((prev) => !prev);
   const toggleDemoMode = () => setIsDemoMode((prev) => !prev);
 
@@ -77,6 +91,10 @@ export function AppProvider({ children }) {
   };
 
   const value = {
+    theme,
+    setTheme,
+    toggleTheme,
+    isDarkMode: theme === 'dark',
     selectedCityId,
     setSelectedCityId,
     currentCity,

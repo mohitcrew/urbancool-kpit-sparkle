@@ -102,7 +102,7 @@ export default function HotspotDetailPage() {
           alignItems: 'center',
           flexWrap: 'wrap',
           gap: 20,
-          background: 'linear-gradient(135deg, rgba(21, 31, 56, 0.9) 0%, rgba(10, 15, 29, 0.95) 100%)',
+          background: 'var(--ai-card-bg)',
           border: '1px solid var(--border-active)'
         }}
       >
@@ -125,7 +125,7 @@ export default function HotspotDetailPage() {
             <StatusBadge status={hotspot.status} variant="rose" />
           </div>
 
-          <h1 style={{ fontSize: '1.85rem', color: '#ffffff', marginBottom: 4 }}>
+          <h1 style={{ fontSize: '1.85rem', color: 'var(--text-primary)', marginBottom: 4 }}>
             {hotspot.name}
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem' }}>
@@ -137,7 +137,7 @@ export default function HotspotDetailPage() {
           style={{
             display: 'flex',
             gap: 16,
-            background: 'rgba(0, 0, 0, 0.35)',
+            background: 'var(--card-inner-bg)',
             padding: '12px 20px',
             borderRadius: 'var(--radius-md)',
             border: '1px solid var(--border-subtle)'
@@ -174,7 +174,7 @@ export default function HotspotDetailPage() {
               Population Density
             </span>
           </div>
-          <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#ffffff', fontFamily: 'var(--font-display)' }}>
+          <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>
             {hotspot.population?.toLocaleString()}
           </div>
           <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: 4 }}>
@@ -225,7 +225,7 @@ export default function HotspotDetailPage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
             <ShieldAlert size={20} color="#f59e0b" />
             <div>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff' }}>
+              <h3 style={{ fontSize: '1.15rem', color: 'var(--text-primary)' }}>
                 Demographic & Infrastructure Exposure Matrix
               </h3>
               <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
@@ -242,28 +242,28 @@ export default function HotspotDetailPage() {
               marginBottom: 20
             }}
           >
-            <div style={{ padding: 14, background: 'rgba(0, 0, 0, 0.25)', borderRadius: 'var(--radius-md)' }}>
+            <div style={{ padding: 14, background: 'var(--card-inner-bg)', borderRadius: 'var(--radius-md)' }}>
               <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)' }}>Elderly Citizens (60+)</div>
               <div style={{ fontSize: '1.3rem', fontWeight: 800, color: '#ef4444', fontFamily: 'var(--font-display)' }}>
                 {hotspot.exposure.vulnerableSeniorCitizens?.toLocaleString()}
               </div>
             </div>
 
-            <div style={{ padding: 14, background: 'rgba(0, 0, 0, 0.25)', borderRadius: 'var(--radius-md)' }}>
+            <div style={{ padding: 14, background: 'var(--card-inner-bg)', borderRadius: 'var(--radius-md)' }}>
               <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)' }}>Children Under 5</div>
               <div style={{ fontSize: '1.3rem', fontWeight: 800, color: '#f97316', fontFamily: 'var(--font-display)' }}>
                 {hotspot.exposure.childrenUnderFive?.toLocaleString()}
               </div>
             </div>
 
-            <div style={{ padding: 14, background: 'rgba(0, 0, 0, 0.25)', borderRadius: 'var(--radius-md)' }}>
+            <div style={{ padding: 14, background: 'var(--card-inner-bg)', borderRadius: 'var(--radius-md)' }}>
               <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)' }}>Outdoor Gig Workers</div>
               <div style={{ fontSize: '1.3rem', fontWeight: 800, color: '#eab308', fontFamily: 'var(--font-display)' }}>
                 {hotspot.exposure.outdoorWorkers?.toLocaleString()}
               </div>
             </div>
 
-            <div style={{ padding: 14, background: 'rgba(0, 0, 0, 0.25)', borderRadius: 'var(--radius-md)' }}>
+            <div style={{ padding: 14, background: 'var(--card-inner-bg)', borderRadius: 'var(--radius-md)' }}>
               <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)' }}>Informal Slum Density</div>
               <div style={{ fontSize: '1.3rem', fontWeight: 800, color: '#a855f7', fontFamily: 'var(--font-display)' }}>
                 {hotspot.exposure.slumInformalSettlementsPct}%
@@ -277,7 +277,7 @@ export default function HotspotDetailPage() {
               gridTemplateColumns: 'repeat(3, 1fr)',
               gap: 12,
               padding: 14,
-              background: 'rgba(255, 255, 255, 0.02)',
+              background: 'var(--card-inner-bg)',
               borderRadius: 'var(--radius-md)',
               border: '1px solid var(--border-subtle)'
             }}
@@ -290,7 +290,7 @@ export default function HotspotDetailPage() {
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <Building size={16} color="#34d399" />
+              <Building size={16} color="#10b981" />
               <span style={{ fontSize: '0.82rem', color: 'var(--text-primary)' }}>
                 <strong>{hotspot.exposure.hospitalsCount}</strong> Hospitals & Health Centers
               </span>
@@ -313,7 +313,7 @@ export default function HotspotDetailPage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <Layers size={20} color="var(--cyan-400)" />
               <div>
-                <h3 style={{ fontSize: '1.15rem', color: '#ffffff' }}>
+                <h3 style={{ fontSize: '1.15rem', color: 'var(--text-primary)' }}>
                   AI Tailored Cooling Package for {hotspot.shortName}
                 </h3>
                 <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
@@ -346,7 +346,7 @@ export default function HotspotDetailPage() {
                 style={{
                   padding: 16,
                   borderRadius: 'var(--radius-md)',
-                  background: 'rgba(0, 0, 0, 0.3)',
+                  background: 'var(--card-inner-bg)',
                   border: '1px solid var(--border-subtle)',
                   display: 'flex',
                   flexDirection: 'column',
@@ -359,17 +359,17 @@ export default function HotspotDetailPage() {
                     <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--cyan-400)', textTransform: 'uppercase' }}>
                       Intervention #{idx + 1}
                     </span>
-                    <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#34d399' }}>
+                    <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#10b981' }}>
                       {item.estimatedCooling}
                     </span>
                   </div>
-                  <h4 style={{ fontSize: '0.95rem', color: '#ffffff', lineHeight: 1.2 }}>{item.name}</h4>
+                  <h4 style={{ fontSize: '0.95rem', color: 'var(--text-primary)', lineHeight: 1.2 }}>{item.name}</h4>
                   <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: 4 }}>
                     Target Deployment: <strong style={{ color: 'var(--text-secondary)' }}>{item.targetVolume}</strong>
                   </p>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: '0.72rem', color: '#34d399' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: '0.72rem', color: '#10b981' }}>
                   <CheckCircle2 size={12} />
                   <span>Feasible in local cadastre</span>
                 </div>

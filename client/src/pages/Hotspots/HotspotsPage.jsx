@@ -87,7 +87,7 @@ export default function HotspotsPage() {
               Urban Heat Vulnerability Registry
             </span>
           </div>
-          <h1 style={{ fontSize: '1.85rem', color: '#ffffff' }}>
+          <h1 style={{ fontSize: '1.85rem', color: 'var(--text-primary)' }}>
             Municipal Heat Hotspots
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem' }}>
@@ -155,8 +155,8 @@ export default function HotspotsPage() {
         </div>
 
         <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
-          Showing <strong style={{ color: '#ffffff' }}>{filteredHotspots.length}</strong> of{' '}
-          <strong style={{ color: '#ffffff' }}>{hotspots.length}</strong> zones
+          Showing <strong style={{ color: 'var(--text-primary)' }}>{filteredHotspots.length}</strong> of{' '}
+          <strong style={{ color: 'var(--text-primary)' }}>{hotspots.length}</strong> zones
         </div>
       </div>
 
@@ -228,7 +228,7 @@ export default function HotspotsPage() {
                       {h.id}
                     </td>
                     <td>
-                      <div style={{ fontWeight: 700, color: '#ffffff', fontSize: '0.92rem' }}>{h.shortName}</div>
+                      <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.92rem' }}>{h.shortName}</div>
                       <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)' }}>{h.name}</div>
                     </td>
                     <td>

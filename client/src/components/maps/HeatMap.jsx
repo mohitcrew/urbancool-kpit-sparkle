@@ -27,7 +27,7 @@ export default function HeatMap({
   showLegend = true,
   interactive = true
 }) {
-  const { currentCity } = useApp();
+  const { currentCity, isDarkMode } = useApp();
   const [internalLayer, setInternalLayer] = useState(activeLayer);
   const [timeHorizon, setTimeHorizon] = useState('current');
   const [activeDrawerHotspot, setActiveDrawerHotspot] = useState(selectedHotspot || null);
@@ -90,7 +90,7 @@ export default function HeatMap({
         return '#10b981';
 
       case 'interventions':
-        return '#22d3ee';
+        return '#0891b2';
 
       default:
         return '#06b6d4';
@@ -138,11 +138,15 @@ export default function HeatMap({
       >
         <MapViewController center={centerCoord} zoom={zoomLevel} />
 
-        {/* Dark High-Tech CartoDB Voyager / Dark Matter Tile Layer */}
+        {/* High-Tech CartoDB Voyager Tile Layer with Theme Adaptive Opacity */}
         <TileLayer
           attribution='&copy; <a href="https://carto.com/">CARTO</a> & OpenStreetMap'
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-          opacity={0.35}
+          url={
+            isDarkMode
+              ? 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
+              : 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
+          }
+          opacity={isDarkMode ? 0.35 : 0.85}
         />
 
         {/* Render polygon regions for each ward */}
@@ -156,10 +160,10 @@ export default function HeatMap({
                 <Polygon
                   positions={h.polygonCoordinates}
                   pathOptions={{
-                    color: isSelected ? '#ffffff' : color,
+                    color: isSelected ? (isDarkMode ? '#ffffff' : '#0f172a') : color,
                     fillColor: color,
-                    fillOpacity: isSelected ? 0.65 : 0.42,
-                    weight: isSelected ? 3 : 1.5,
+                    fillOpacity: isSelected ? 0.65 : (isDarkMode ? 0.42 : 0.48),
+                    weight: isSelected ? 3 : 2,
                     dashArray: isSelected ? '4, 4' : null
                   }}
                   eventHandlers={{
@@ -182,7 +186,7 @@ export default function HeatMap({
                   center={h.centerCoordinates}
                   radius={h.heatRisk >= 90 ? 8 : 6}
                   pathOptions={{
-                    color: '#ffffff',
+                    color: isDarkMode ? '#ffffff' : '#0f172a',
                     fillColor: color,
                     fillOpacity: 0.95,
                     weight: 2
@@ -193,7 +197,7 @@ export default function HeatMap({
                 >
                   <Popup>
                     <div style={{ minWidth: 160, padding: 4 }}>
-                      <div style={{ fontWeight: 700, fontSize: '0.9rem', color: '#ffffff' }}>
+                      <div style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-primary)' }}>
                         {h.shortName}
                       </div>
                       <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', margin: '4px 0' }}>

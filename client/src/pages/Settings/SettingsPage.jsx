@@ -11,7 +11,10 @@ import {
   Database,
   Check,
   Save,
-  Radio
+  Radio,
+  Sun,
+  Moon,
+  Monitor
 } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import { useApp } from '../../context/AppContext';
@@ -23,6 +26,9 @@ export default function SettingsPage() {
     citiesList,
     isDemoMode,
     toggleDemoMode,
+    theme,
+    setTheme,
+    isDarkMode,
     tempUnit,
     setTempUnit,
     currency,
@@ -52,11 +58,11 @@ export default function SettingsPage() {
               System Preferences & API Config
             </span>
           </div>
-          <h1 style={{ fontSize: '1.85rem', color: '#ffffff' }}>
+          <h1 style={{ fontSize: '1.85rem', color: 'var(--text-primary)' }}>
             Platform Settings & Thresholds
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem' }}>
-            Configure default municipal jurisdiction, climatology units, heat vulnerability thresholds, and demo simulation mode.
+            Configure theme aesthetics, default municipal jurisdiction, climatology units, heat vulnerability thresholds, and demo simulation mode.
           </p>
         </div>
 
@@ -71,11 +77,108 @@ export default function SettingsPage() {
 
       {/* Settings Sections */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+        {/* Section: Appearance & Theme Mode */}
+        <div className="card-glass" style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-subtle)', paddingBottom: 10 }}>
+            <div>
+              <h3 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginBottom: 2 }}>
+                Display Theme & Aesthetics
+              </h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.82rem' }}>
+                Select between high-tech dark command center and clean climate-tech light mode.
+              </p>
+            </div>
+            <span
+              style={{
+                fontSize: '0.74rem',
+                fontFamily: 'var(--font-mono)',
+                color: 'var(--cyan-400)',
+                padding: '3px 8px',
+                borderRadius: 'var(--radius-xs)',
+                background: 'var(--badge-bg)',
+                border: '1px solid var(--border-default)'
+              }}
+            >
+              Active: {isDarkMode ? 'Dark Mode' : 'Light Mode'}
+            </span>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
+            {/* Dark Mode Tile */}
+            <div
+              onClick={() => setTheme('dark')}
+              style={{
+                padding: 16,
+                borderRadius: 'var(--radius-md)',
+                cursor: 'pointer',
+                border: isDarkMode ? '2px solid var(--cyan-500)' : '1px solid var(--border-default)',
+                background: '#0a0f1d',
+                boxShadow: isDarkMode ? '0 0 16px rgba(6, 182, 212, 0.3)' : 'var(--shadow-sm)',
+                transition: 'all 0.2s ease',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 10
+              }}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <Moon size={18} color="#22d3ee" />
+                  <strong style={{ color: '#f8fafc', fontSize: '0.92rem' }}>Dark Command Center</strong>
+                </div>
+                {isDarkMode && <Check size={16} color="#22d3ee" />}
+              </div>
+              <p style={{ color: '#94a3b8', fontSize: '0.78rem', lineHeight: 1.35 }}>
+                High-contrast dark mode tailored for geospatial thermal analytics, night operations, and mission control rooms.
+              </p>
+              <div style={{ display: 'flex', gap: 6, marginTop: 4 }}>
+                <span style={{ width: 14, height: 14, borderRadius: '50%', background: '#0a0f1d', border: '1px solid #334155' }} />
+                <span style={{ width: 14, height: 14, borderRadius: '50%', background: '#151f38' }} />
+                <span style={{ width: 14, height: 14, borderRadius: '50%', background: '#06b6d4' }} />
+                <span style={{ width: 14, height: 14, borderRadius: '50%', background: '#ef4444' }} />
+              </div>
+            </div>
+
+            {/* Light Mode Tile */}
+            <div
+              onClick={() => setTheme('light')}
+              style={{
+                padding: 16,
+                borderRadius: 'var(--radius-md)',
+                cursor: 'pointer',
+                border: !isDarkMode ? '2px solid var(--cyan-500)' : '1px solid var(--border-default)',
+                background: '#ffffff',
+                boxShadow: !isDarkMode ? '0 0 16px rgba(6, 182, 212, 0.3)' : 'var(--shadow-sm)',
+                transition: 'all 0.2s ease',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 10
+              }}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <Sun size={18} color="#0891b2" />
+                  <strong style={{ color: '#0f172a', fontSize: '0.92rem' }}>Clean Climate-Tech Light</strong>
+                </div>
+                {!isDarkMode && <Check size={16} color="#0891b2" />}
+              </div>
+              <p style={{ color: '#475569', fontSize: '0.78rem', lineHeight: 1.35 }}>
+                Sleek, vibrant daylight-optimized palette with frosted white cards, sharp slate typography, and crisp borders.
+              </p>
+              <div style={{ display: 'flex', gap: 6, marginTop: 4 }}>
+                <span style={{ width: 14, height: 14, borderRadius: '50%', background: '#f8fafc', border: '1px solid #cbd5e1' }} />
+                <span style={{ width: 14, height: 14, borderRadius: '50%', background: '#ffffff', border: '1px solid #cbd5e1' }} />
+                <span style={{ width: 14, height: 14, borderRadius: '50%', background: '#06b6d4' }} />
+                <span style={{ width: 14, height: 14, borderRadius: '50%', background: '#dc2626' }} />
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Section 1: Demonstration & Mock Toggle */}
         <div className="card-glass" style={{ padding: 24, border: '1px solid var(--border-active)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 14 }}>
             <div>
-              <h3 style={{ fontSize: '1.1rem', color: '#ffffff', marginBottom: 4 }}>
+              <h3 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginBottom: 4 }}>
                 Architecture Execution Mode (Demo / Real API)
               </h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.82rem' }}>
@@ -97,7 +200,7 @@ export default function SettingsPage() {
             style={{
               padding: 12,
               borderRadius: 'var(--radius-sm)',
-              background: 'rgba(0, 0, 0, 0.3)',
+              background: 'var(--code-bg)',
               fontSize: '0.78rem',
               color: 'var(--text-muted)',
               fontFamily: 'var(--font-mono)'
@@ -113,7 +216,7 @@ export default function SettingsPage() {
 
         {/* Section 2: City & Localization */}
         <div className="card-glass" style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <h3 style={{ fontSize: '1.1rem', color: '#ffffff', borderBottom: '1px solid var(--border-subtle)', paddingBottom: 10 }}>
+          <h3 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', borderBottom: '1px solid var(--border-subtle)', paddingBottom: 10 }}>
             Geographic Jurisdiction & Localization
           </h3>
 
@@ -167,13 +270,13 @@ export default function SettingsPage() {
 
         {/* Section 3: Risk Threshold Calibration */}
         <div className="card-glass" style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <h3 style={{ fontSize: '1.1rem', color: '#ffffff', borderBottom: '1px solid var(--border-subtle)', paddingBottom: 10 }}>
+          <h3 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', borderBottom: '1px solid var(--border-subtle)', paddingBottom: 10 }}>
             Heat Risk Index Classification Thresholds
           </h3>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-              <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#f87171' }}>
+              <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#ef4444' }}>
                 Critical Risk Lower Bound (0-100):
               </label>
               <input
@@ -187,7 +290,7 @@ export default function SettingsPage() {
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-              <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#fb923c' }}>
+              <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#f97316' }}>
                 High Risk Lower Bound (0-100):
               </label>
               <input
@@ -201,7 +304,7 @@ export default function SettingsPage() {
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-              <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#facc15' }}>
+              <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#eab308' }}>
                 Moderate Risk Lower Bound (0-100):
               </label>
               <input
@@ -218,12 +321,12 @@ export default function SettingsPage() {
 
         {/* Section 4: Notifications & Automated Advisory */}
         <div className="card-glass" style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <h3 style={{ fontSize: '1.1rem', color: '#ffffff', borderBottom: '1px solid var(--border-subtle)', paddingBottom: 10 }}>
+          <h3 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', borderBottom: '1px solid var(--border-subtle)', paddingBottom: 10 }}>
             Automated Heat Action Alerts & Notifications
           </h3>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', fontSize: '0.88rem' }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', fontSize: '0.88rem', color: 'var(--text-primary)' }}>
               <input
                 type="checkbox"
                 checked={autoAlerts}
@@ -233,7 +336,7 @@ export default function SettingsPage() {
               <span>Trigger automated IMD Stage 2 Heatwave advisory warnings on Dashboard</span>
             </label>
 
-            <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', fontSize: '0.88rem' }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', fontSize: '0.88rem', color: 'var(--text-primary)' }}>
               <input
                 type="checkbox"
                 checked={emailAlerts}

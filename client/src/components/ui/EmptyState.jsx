@@ -35,7 +35,7 @@ export default function EmptyState({
         <Icon size={24} />
       </div>
       <div>
-        <h4 style={{ fontSize: '1rem', color: '#ffffff', marginBottom: 4 }}>{title}</h4>
+        <h4 style={{ fontSize: '1rem', color: 'var(--text-primary)', marginBottom: 4 }}>{title}</h4>
         <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', maxWidth: 420 }}>{description}</p>
       </div>
       {action && <div style={{ marginTop: 8 }}>{action}</div>}

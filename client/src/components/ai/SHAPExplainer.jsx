@@ -15,7 +15,7 @@ export default function SHAPExplainer({ explanation, hotspotName }) {
         flexDirection: 'column',
         gap: 16,
         border: '1px solid var(--border-active)',
-        background: 'linear-gradient(180deg, rgba(21, 31, 56, 0.7) 0%, rgba(10, 15, 29, 0.9) 100%)'
+        background: 'var(--ai-card-bg)'
       }}
     >
       {/* Header */}
@@ -49,7 +49,7 @@ export default function SHAPExplainer({ explanation, hotspotName }) {
               AI-generated explanation (SHAP Attribution)
             </span>
           </div>
-          <h3 style={{ fontSize: '1.15rem', color: '#ffffff', lineHeight: 1.2 }}>
+          <h3 style={{ fontSize: '1.15rem', color: 'var(--text-primary)', lineHeight: 1.2 }}>
             Thermal Driver Breakdown for {hotspotName || 'Zone'}
           </h3>
         </div>
@@ -89,7 +89,7 @@ export default function SHAPExplainer({ explanation, hotspotName }) {
                   style={{
                     fontFamily: 'var(--font-mono)',
                     fontWeight: 700,
-                    color: isProtective ? '#34d399' : factor.color || '#f97316'
+                    color: isProtective ? '#10b981' : factor.color || '#f97316'
                   }}
                 >
                   {factor.contributionPercent > 0 ? `+${factor.contributionPercent}%` : `${factor.contributionPercent}%`}
@@ -101,7 +101,7 @@ export default function SHAPExplainer({ explanation, hotspotName }) {
                 style={{
                   width: '100%',
                   height: 8,
-                  backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                  backgroundColor: 'var(--card-inner-bg)',
                   borderRadius: 999,
                   overflow: 'hidden',
                   position: 'relative'

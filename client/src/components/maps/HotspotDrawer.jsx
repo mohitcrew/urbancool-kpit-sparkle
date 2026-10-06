@@ -47,7 +47,7 @@ export default function HotspotDrawer({ hotspot, onClose }) {
             </span>
             <RiskBadge level={hotspot.riskLevel} score={hotspot.heatRisk} />
           </div>
-          <h3 style={{ fontSize: '1.05rem', color: '#ffffff', lineHeight: 1.2 }}>
+          <h3 style={{ fontSize: '1.05rem', color: 'var(--text-primary)', lineHeight: 1.2 }}>
             {hotspot.name}
           </h3>
         </div>
@@ -70,7 +70,7 @@ export default function HotspotDrawer({ hotspot, onClose }) {
           display: 'grid',
           gridTemplateColumns: 'repeat(2, 1fr)',
           gap: 10,
-          background: 'rgba(0, 0, 0, 0.2)',
+          background: 'var(--card-inner-bg)',
           padding: 12,
           borderRadius: 'var(--radius-md)',
           border: '1px solid var(--border-subtle)'
@@ -89,7 +89,7 @@ export default function HotspotDrawer({ hotspot, onClose }) {
           <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: 4 }}>
             <Users size={12} color="#38bdf8" /> Exposed Pop.
           </div>
-          <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#ffffff', fontFamily: 'var(--font-display)' }}>
+          <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>
             {hotspot.population?.toLocaleString()}
           </div>
         </div>
@@ -139,15 +139,15 @@ export default function HotspotDrawer({ hotspot, onClose }) {
                   fontSize: '0.76rem',
                   padding: '5px 8px',
                   borderRadius: 'var(--radius-xs)',
-                  background: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid rgba(255, 255, 255, 0.06)',
+                  background: 'var(--badge-bg)',
+                  border: '1px solid var(--border-subtle)',
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center'
                 }}
               >
                 <span style={{ color: 'var(--text-primary)' }}>{item.name}</span>
-                <span style={{ color: '#34d399', fontWeight: 700 }}>{item.estimatedCooling}</span>
+                <span style={{ color: '#10b981', fontWeight: 700 }}>{item.estimatedCooling}</span>
               </div>
             ))}
           </div>

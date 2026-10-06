@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import {
   MapPin,
   Sun,
+  Moon,
   Bell,
   Sliders,
   Menu,
@@ -24,6 +25,9 @@ export default function Header() {
     isDemoMode,
     toggleDemoMode,
     toggleSidebar,
+    theme,
+    toggleTheme,
+    isDarkMode,
     notifications,
     markAllNotificationsRead
   } = useApp();
@@ -57,11 +61,12 @@ export default function Header() {
               display: 'flex',
               alignItems: 'center',
               gap: 8,
-              background: 'rgba(15, 23, 42, 0.8)',
+              background: 'var(--bg-secondary)',
               border: '1px solid var(--border-default)',
               padding: '6px 14px',
               borderRadius: 'var(--radius-md)',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              boxShadow: 'var(--shadow-sm)'
             }}
           >
             <MapPin size={16} color="var(--cyan-400)" />
@@ -71,7 +76,7 @@ export default function Header() {
               style={{
                 background: 'transparent',
                 border: 'none',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 fontWeight: 700,
                 fontSize: '0.92rem',
                 cursor: 'pointer',
@@ -80,7 +85,11 @@ export default function Header() {
               }}
             >
               {citiesList.map((c) => (
-                <option key={c.id} value={c.id} style={{ background: '#0f172a', color: '#fff' }}>
+                <option
+                  key={c.id}
+                  value={c.id}
+                  style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}
+                >
                   {c.name}, {c.state}
                 </option>
               ))}
@@ -97,7 +106,7 @@ export default function Header() {
               gap: 14,
               padding: '6px 14px',
               borderRadius: 'var(--radius-md)',
-              background: 'rgba(255, 255, 255, 0.03)',
+              background: 'var(--card-inner-bg)',
               border: '1px solid var(--border-subtle)',
               fontSize: '0.8rem'
             }}
@@ -106,13 +115,13 @@ export default function Header() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
               <Thermometer size={14} color="#f97316" />
               <span style={{ color: 'var(--text-muted)' }}>Ambient:</span>
-              <strong style={{ color: '#ffffff' }}>{currentCity.weather.ambientTemp}</strong>
+              <strong style={{ color: 'var(--text-primary)' }}>{currentCity.weather.ambientTemp}</strong>
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
               <Sun size={14} color="#eab308" />
               <span style={{ color: 'var(--text-muted)' }}>Heat Index:</span>
-              <strong style={{ color: '#fbbf24' }}>{currentCity.weather.heatIndex}</strong>
+              <strong style={{ color: '#eab308' }}>{currentCity.weather.heatIndex}</strong>
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
@@ -124,8 +133,22 @@ export default function Header() {
         )}
       </div>
 
-      {/* Right: Demo Mode Pill, Notifications, User Profile */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+      {/* Right: Theme Toggle, Demo Mode Pill, Notifications, User Profile */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        {/* Theme Mode Toggle Button */}
+        <button
+          onClick={toggleTheme}
+          className="theme-toggle-btn"
+          title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          aria-label="Toggle color theme"
+        >
+          {isDarkMode ? (
+            <Sun size={18} style={{ color: '#fbbf24', transition: 'transform 0.2s ease' }} />
+          ) : (
+            <Moon size={18} style={{ color: '#0284c7', transition: 'transform 0.2s ease' }} />
+          )}
+        </button>
+
         {/* Demo Mode Toggle */}
         <button
           onClick={toggleDemoMode}
@@ -146,12 +169,13 @@ export default function Header() {
               width: 38,
               height: 38,
               borderRadius: 'var(--radius-md)',
-              background: 'rgba(255, 255, 255, 0.04)',
+              background: 'var(--badge-bg)',
               border: '1px solid var(--border-default)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: 'var(--text-secondary)'
+              color: 'var(--text-secondary)',
+              cursor: 'pointer'
             }}
             title="Notifications"
           >
@@ -195,7 +219,7 @@ export default function Header() {
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-                <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#ffffff' }}>
+                <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                   System Notifications
                 </span>
                 {unreadCount > 0 && (
@@ -215,12 +239,12 @@ export default function Header() {
                     style={{
                       padding: 10,
                       borderRadius: 'var(--radius-sm)',
-                      background: n.read ? 'rgba(255, 255, 255, 0.02)' : 'rgba(6, 182, 212, 0.08)',
+                      background: n.read ? 'var(--card-inner-bg)' : 'rgba(6, 182, 212, 0.08)',
                       border: '1px solid var(--border-subtle)',
                       fontSize: '0.78rem'
                     }}
                   >
-                    <div style={{ fontWeight: 600, color: '#ffffff', marginBottom: 2 }}>{n.title}</div>
+                    <div style={{ fontWeight: 600, color: 'var(--text-primary)', marginBottom: 2 }}>{n.title}</div>
                     <div style={{ color: 'var(--text-secondary)', lineHeight: 1.3 }}>{n.message}</div>
                     <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginTop: 4 }}>{n.time}</div>
                   </div>
@@ -238,7 +262,7 @@ export default function Header() {
             gap: 10,
             padding: '4px 10px 4px 6px',
             borderRadius: 'var(--radius-full)',
-            background: 'rgba(255, 255, 255, 0.04)',
+            background: 'var(--badge-bg)',
             border: '1px solid var(--border-default)'
           }}
         >
@@ -259,7 +283,7 @@ export default function Header() {
             PMC
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.1 }}>
-            <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#ffffff' }}>City Climate Cell</span>
+            <span style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--text-primary)' }}>City Climate Cell</span>
             <span style={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>Admin Role</span>
           </div>
         </div>

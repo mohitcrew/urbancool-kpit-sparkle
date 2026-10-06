@@ -60,7 +60,7 @@ export default function HeatMapPage() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
             <MapPin size={16} color="var(--cyan-400)" />
-            <span style={{ fontWeight: 700, color: '#ffffff' }}>{currentCity?.name} Geospatial Heat Studio</span>
+            <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>{currentCity?.name} Geospatial Heat Studio</span>
           </div>
           <span style={{ color: 'var(--text-muted)' }}>•</span>
           <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
